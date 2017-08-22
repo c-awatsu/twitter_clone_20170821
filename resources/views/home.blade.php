@@ -100,14 +100,14 @@
 
                     <div class="card-title my-2">
                         <a href="#" class="font-weight-bold text-inherit d-block">
-                            {{ $displayName }}
+                            {{$user -> display_name }}
                         </a>
                         <a href="#" class="text-inherit text-muted">
-                            &#64;{{ $urlName }}
+                            &#64;{{$user ->url_name }}
                         </a>
                     </div>
 
-                    <p class="mb-4">{{ $description }}</p>
+                    <p class="mb-4">{{$user -> description }}</p>
 
                     <ul class="card-profile-stats">
                         <li class="card-profile-stat">
@@ -130,7 +130,7 @@
         <div class="col-lg-6">
             <ul class="list-group media-list-stream mb-4">
                 <li class="media list-group-item p-4 {{ $errors->has('body') ? 'has-danger' : '' }}">
-                    <form method="POST" action="#" class="input-group">
+                    <form method="POST" action={{url('home')}} class="input-group">
                         {{ csrf_field() }}
 
                         <input name="body" type="text" class="form-control" placeholder="いまどうしてる？">
@@ -149,6 +149,7 @@
                 </li>
 
                 <li class="media list-group-item p-4">
+                    @foreach($sortedTweet as $tweet)
                     <article class="d-flex w-100">
                         <a class="font-weight-bold text-inherit d-block" href="#">
                             <img class="media-object d-flex align-self-start mr-3"
@@ -157,44 +158,20 @@
                         <div class="media-body">
                             <div class="mb-2">
                                 <a class="text-inherit" href="#">
-                                    <strong>牧野</strong>
-                                    <span class="text-muted">&#64;snicmakino</span>
+                                    <strong>{{$user -> display_name}}</strong>
+                                    <span class="text-muted">&#64;{{$user -> url_name }}</span>
                                 </a>
                                 -
-                                <time class="small text-muted">6時間</time>
+                                <time class="small text-muted">{{ $tweet -> created_at }}</time>
                             </div>
 
                             <p>
-                                rust面白そうだなー
-                                でも、やりたい事が待ち行列になってる
+                                {{ $tweet -> body }}
                             </p>
                         </div>
                     </article>
+                    @endforeach
                 </li>
-                <li class="media list-group-item p-4">
-                    <article class="d-flex w-100">
-                        <a class="font-weight-bold text-inherit d-block" href="#">
-                            <img class="media-object d-flex align-self-start mr-3"
-                                 src="{{ asset('images/no-thumb.png') }}">
-                        </a>
-                        <div class="media-body">
-                            <div class="mb-2">
-                                <a class="text-inherit" href="#">
-                                    <strong>牧野</strong>
-                                    <span class="text-muted">&#64;snicmakino</span>
-                                </a>
-                                -
-                                <time class="small text-muted">8月15日</time>
-                            </div>
-
-                            <p>
-                                サマーインターンの講師してるんだけど、学生は分からない問題を一つずつ試して、トライアンドエラーをしながら前に進んでいる。
-                                そんな姿を見ながら、エンジニアって何年経ってもこの頃と変わらない気持ちと姿勢で、問題に向き合える良い仕事だなと感じた。
-                            </p>
-                        </div>
-                    </article>
-                </li>
-
             </ul>
         </div>
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Tweet;
+use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -19,10 +22,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $displayName = Auth::user() -> display_name;
-        $urlName = Auth::user() -> url_name;
-        $description = Auth::user() -> description;
+        $user = Auth::user();
+        //$now = new Carbon(Carbon::now(new DateTimeZone('Asia/Tokyo')));
+        //$subtractTime = $now -> sub(date_interval_create_from_date_string($user->created_at));
+        $sortedTweet = $user -> tweets ->sortByDesc('created_at');
+        return view('home', compact( 'user','sortedTweet'));
+    }
 
-        return view('home',compact('displayName','urlName','description'));
+    public function tweet(Request $request)
+    {
+        $this->validate($request, ['body' => 'max:140']);
+
+        Tweet::create([
+            'user_id' => Auth::user() -> id,
+            'body' => $request->input('body'),
+        ]);
+
+        return redirect('home');
+
     }
 }
