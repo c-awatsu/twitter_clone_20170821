@@ -100,14 +100,14 @@
 
                     <div class="card-title my-2">
                         <a href="#" class="font-weight-bold text-inherit d-block">
-                            牧野
+                            {{ $displayName }}
                         </a>
                         <a href="#" class="text-inherit text-muted">
-                            &#64;snicmakino
+                            &#64;{{ $urlName }}
                         </a>
                     </div>
 
-                    <p class="mb-4">Software engineer（JavaとかDBとかAWSとか） 空前絶後のKotlinブーム中</p>
+                    <p class="mb-4">{{ $description }}</p>
 
                     <ul class="card-profile-stats">
                         <li class="card-profile-stat">

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class HomeController extends Controller
 {
     /**
@@ -17,6 +19,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $displayName = Auth::user() -> display_name;
+        $urlName = Auth::user() -> url_name;
+        $description = Auth::user() -> description;
+
+        return view('home',compact('displayName','urlName','description'));
     }
 }
