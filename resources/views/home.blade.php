@@ -113,13 +113,13 @@
                         <li class="card-profile-stat">
                             <a href="#" class="text-inherit">
                                 <span class="text-muted">フォロー</span>
-                                <strong class="d-block">30</strong>
+                                <strong class="d-block">{{ count($user -> follower) }}</strong>
                             </a>
                         </li>
                         <li class="card-profile-stat">
                             <a href="#" class="text-inherit">
                                 <span class="text-muted">フォロワー</span>
-                                <strong class="d-block">7</strong>
+                                <strong class="d-block">{{ count($user -> followee) }}</strong>
                             </a>
                         </li>
                     </ul>

@@ -37,13 +37,4 @@ class Tweet extends Model
         'body',
         'created_at'
     ];
-
-    /**
-     * 配列には含めない属性
-     *
-     * @var array
-     */
-    protected $hidden = [
-      'updated_at'
-    ];
 }

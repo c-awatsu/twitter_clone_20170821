@@ -62,4 +62,12 @@ class User extends Authenticatable
     public function tweets(){
         return $this-> hasMany('App\Tweet');
     }
+
+    public function follower(){
+        return $this -> hasMany('App\Friendship','follower_id');
+    }
+
+    public function followee(){
+        return $this -> hasMany('App\Friendship','followee_id');
+    }
 }

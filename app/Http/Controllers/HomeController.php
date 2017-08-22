@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Tweet;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +22,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+
         //$now = new Carbon(Carbon::now(new DateTimeZone('Asia/Tokyo')));
         //$subtractTime = $now -> sub(date_interval_create_from_date_string($user->created_at));
         $sortedTweet = $user -> tweets ->sortByDesc('created_at');
