@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\UpdateAccount;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,11 +37,20 @@ class AccountController extends Controller
 
     public function updateProfile(Request $request)
     {
-        Auth::user() -> update([
+        Auth::user()->update([
             'display_name' => $request->input('display_name'),
             'description' => $request->input('description'),
-            'updated_at ' => Carbon::now(),
         ]);
-        return view('settings.profile',['user'=>Auth::user()]);
+        return view('settings.profile', ['user' => Auth::user()]);
+    }
+
+    public function updateAccount(UpdateAccount $request)
+    {
+        $input = $request->only('url_name', 'email', 'password');
+
+        Auth::user()->update($input);
+
+
+        return view('settings.account', ['user' => Auth::user()]);
     }
 }

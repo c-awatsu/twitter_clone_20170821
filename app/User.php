@@ -59,16 +59,27 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function tweets(){
-        return $this-> hasMany('App\Tweet');
+    public function setPasswordAttribute($value)
+    {
+        if (is_null($value)) {
+            return;
+        }
+        $this->attributes['password'] = bcrypt($value);
     }
 
-    public function followers(){
-        return $this -> belongsToMany(User::class,'friendships','followee_id','follower_id');
+    public function tweets()
+    {
+        return $this->hasMany('App\Tweet');
     }
 
-    public function following(){
-        return $this -> belongsToMany(User::class,'friendships','follower_id','followee_id');
+    public function followers()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'followee_id', 'follower_id');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'friendships', 'follower_id', 'followee_id');
 
     }
 

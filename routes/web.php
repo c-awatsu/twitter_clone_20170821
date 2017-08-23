@@ -27,7 +27,8 @@ Route::post('register', 'Auth\RegisterController@register');
 Route::get('home', 'HomeController@index')->name('home');
 Route::post('home', 'HomeController@tweet')->name('home');
 
-Route::get('account', 'AccountController@account');
+Route::get('account', 'AccountController@account')->name('account');
+Route::put('account','AccountController@updateAccount')->name('account');
 Route::get('profile', 'AccountController@profile')->name('profile');
 Route::put('profile', 'AccountController@updateProfile')->name('profile');
 

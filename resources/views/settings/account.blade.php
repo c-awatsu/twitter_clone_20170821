@@ -35,7 +35,7 @@
 
                     <div class="card-title my-2">
                         <a class="font-weight-bold text-inherit d-block" href="#">{{ $user -> display_name}}</a>
-                        <span class="text-muted">&#64;{{ $user -> ural_name }}</span>
+                        <span class="text-muted">&#64;{{ $user -> url_name }}</span>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                     <strong>アカウント</strong>
                 </div>
                 <div class="card-block">
-                    <form method="POST" action="#">
+                    <form method="POST" action={{ url('account') }}>
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 
