@@ -20,72 +20,7 @@
 </head>
 <body class="application">
 
-<nav class="navbar navbar-toggleable-sm fixed-top navbar-inverse bg-danger">
-    <div class="container">
-        <button
-                class="navbar-toggler navbar-toggler-right hidden-md-up"
-                type="button"
-                data-toggle="collapse"
-                data-target="#navbarResponsive"
-                aria-controls="navbarResponsive"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <a class="navbar-brand hidden-md-up" href="{{ url('home') }}">Laratweet</a>
-
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav mr-auto">
-                <li>
-                    <a class="nav-link" href="{{ url('home') }}">
-                        <span class="icon icon-home"></span> ホーム
-                    </a>
-                </li>
-                <li class="dropdown-divider"></li>
-                <li class="hidden-md-up">
-                    <a class="nav-link" href="#">
-                        <span class="icon icon-cog"></span> 設定
-                    </a>
-                </li>
-                <li class="hidden-md-up">
-                    <a class="nav-link" href="{{ url('logout') }}"
-                       onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                        <span class="icon icon-log-out"></span> ログアウト
-                    </a>
-
-                    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                </li>
-            </ul>
-
-            <form action="#" class="form-inline float-right hidden-sm-down">
-                <span {{ $errors->has('search') ? 'has-danger' : '' }}>
-                    <input name="search" type="text" class="form-control form-search" placeholder="Search">
-                </span>
-            </form>
-
-            <ul class="nav navbar-nav hidden-sm-down">
-                <li class="nav-item nav-account dropdown">
-                    <a class="nav-link" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-                       aria-expanded="false">
-                        <img class="rounded-circle" src="{{ asset('images/no-thumb.png') }}">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">
-                            <span class="icon icon-cog"></span> 設定
-                        </a>
-                        <a class="dropdown-item" href="{{ url('logout') }}"
-                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            <span class="icon icon-log-out"></span> ログアウト
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
+@include('components.navbar')
 
 <div class="container pt-4">
     <div class="row">
@@ -99,21 +34,21 @@
                     </a>
 
                     <div class="card-title my-2">
-                        <a class="font-weight-bold text-inherit d-block" href="#">牧野</a>
-                        <span class="text-muted">&#64;snicmakino</span>
+                        <a class="font-weight-bold text-inherit d-block" href="#">{{ $user -> display_name}}</a>
+                        <span class="text-muted">&#64;{{ $user -> ural_name }}</span>
                     </div>
                 </div>
             </div>
 
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action justify-content-between">
+                <a href="{{ url('account') }}" class="list-group-item list-group-item-action justify-content-between">
                     アカウント
                     <span class="icon icon-chevron-right"></span>
                 </a>
             </div>
 
             <div class="list-group mb-4">
-                <a href="#" class="list-group-item list-group-item-action justify-content-between">
+                <a href="{{ url('profile') }}" class="list-group-item list-group-item-action justify-content-between">
                     プロフィール
                     <span class="icon icon-chevron-right"></span>
                 </a>
@@ -138,7 +73,7 @@
                             <label for="url_name" class="col-4 col-form-label">ユーザー名</label>
                             <div class="col-8">
                                 <input name="url_name" type="text" maxlength="15" id="url_name" class="form-control"
-                                       value="snicmakino">
+                                       value="{{$user -> url_name}}">
 
                                 @if ($errors->has('url_name'))
                                     <div class="form-control-feedback">
@@ -151,7 +86,7 @@
                             <label for="email" class="col-4 col-form-label">メールアドレス</label>
                             <div class="col-8">
                                 <input name="email" type="email" id="email" class="form-control"
-                                       value="makino@asia-quest.jp">
+                                       value="{{$user -> email}}">
 
                                 @if ($errors->has('email'))
                                     <div class="form-control-feedback">

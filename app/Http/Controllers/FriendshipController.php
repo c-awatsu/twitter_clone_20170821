@@ -9,29 +9,37 @@
 namespace App\Http\Controllers;
 
 
-use Illuminate\Support\Facades\Auth;
+use App\User;
 
 class FriendshipController extends Controller
 {
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function following()
+    public function following($urlName)
     {
-        $user = Auth::user();
-        $profiles = $user -> following;
+        $user = User::whereUrlName($urlName)->first();
+        $profiles = $user->following;
 
-        return view('user.following',compact('user','profiles'));
+        return view('user.following', compact('user', 'profiles'));
     }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function followers()
+    public function followers($urlName)
     {
-        $user = Auth::user();
-        $profiles = $user -> followers;
+        $user = User::whereUrlName($urlName)->first();
+        $profiles = $user->followers;
 
-        return view('user.followers',compact('user','profiles'));
+        return view('user.followers', compact('user', 'profiles'));
     }
+
+    public function profile($urlName){
+        $user = User::whereUrlName($urlName)->first();
+        $sortedTweets = $user -> tweets -> sortByDesc('created_at');
+
+        return view('user.profile',compact('user','sortedTweets'));
+    }
+
 }

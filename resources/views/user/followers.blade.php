@@ -27,7 +27,7 @@
         <div class="container-inner">
             <img class="rounded-circle media-object" src="{{ asset('images/no-thumb.png') }}">
             <h3 class="profile-header-user">{{ $user -> display_name }}</h3>
-            <p class="profile-header-bio">{{ $user -> url_name }}</p>
+            <p class="profile-header-bio">{{ $user -> description }}</p>
         </div>
     </div>
 

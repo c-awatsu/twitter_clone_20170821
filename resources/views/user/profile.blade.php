@@ -52,7 +52,7 @@
                             </a>
                         </li>
                         <li class="card-profile-stat">
-                            <a href={{url('/followers') }} class="text-inherit">
+                            <a href={{url("{$user -> url_name}/followers") }} class="text-inherit">
                                 <span class="text-muted">フォロワー</span>
                                 <strong class="d-block">{{ $user ->  following -> count() }}</strong>
                             </a>
@@ -64,48 +64,33 @@
 
         <div class="col-lg-6">
             <ul class="list-group media-list-stream mb-4">
-                <li class="media list-group-item p-4 {{ $errors->has('body') ? 'has-danger' : '' }}">
-                    <form method="POST" action={{url('home')}} class="input-group">
-                        {{ csrf_field() }}
-
-                        <input name="body" type="text" class="form-control" placeholder="いまどうしてる？">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-secondary">
-                                <span class="icon icon-new-message"></span>
-                            </button>
-                        </div>
-                    </form>
-
-                    @if($errors->has('body'))
-                        <div class="form-control-feedback">
-                            <strong>{{ $errors->first('body') }}</strong>
-                        </div>
-                    @endif
-                </li>
-
                 <li class="media list-group-item p-4">
-                    @foreach($sortedTweets as $tweet)
-                    <article class="d-flex w-100">
-                        <a class="font-weight-bold text-inherit d-block" href="#">
-                            <img class="media-object d-flex align-self-start mr-3"
-                                 src="{{ asset('images/no-thumb.png') }}">
-                        </a>
-                        <div class="media-body">
-                            <div class="mb-2">
-                                <a class="text-inherit" href="#">
-                                    <strong>{{$user -> display_name}}</strong>
-                                    <span class="text-muted">&#64;{{$user -> url_name }}</span>
+                    @if(count($sortedTweets) > 0)
+                        @foreach($sortedTweets as $tweet)
+                            <article class="d-flex w-100">
+                                <a class="font-weight-bold text-inherit d-block" href="#">
+                                    <img class="media-object d-flex align-self-start mr-3"
+                                         src="{{ asset('images/no-thumb.png') }}">
                                 </a>
-                                -
-                                <time class="small text-muted">{{ $tweet -> created_at }}</time>
-                            </div>
+                                <div class="media-body">
+                                    <div class="mb-2">
+                                        <a class="text-inherit" href="#">
+                                            <strong>{{$user -> display_name}}</strong>
+                                            <span class="text-muted">&#64;{{$user -> url_name }}</span>
+                                        </a>
+                                        -
+                                        <time class="small text-muted">{{ $tweet -> created_at }}</time>
+                                    </div>
 
-                            <p>
-                                {{ $tweet -> body }}
-                            </p>
-                        </div>
-                    </article>
-                    @endforeach
+                                    <p>
+                                        {{ $tweet -> body }}
+                                    </p>
+                                </div>
+                            </article>
+                        @endforeach
+                    @else
+                        <strong>ツイートはまだありません</strong>
+                    @endif
                 </li>
             </ul>
         </div>

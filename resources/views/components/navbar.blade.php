@@ -25,7 +25,7 @@
                 </li>
                 <li class="dropdown-divider"></li>
                 <li class="hidden-md-up">
-                    <a class="nav-link" href="#">
+                    <a class="nav-link" href="{{ url('account') }}">
                         <span class="icon icon-cog"></span> 設定
                     </a>
                 </li>
@@ -54,7 +54,7 @@
                         <img class="rounded-circle" src="{{ asset('images/no-thumb.png') }}">
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ url('account') }}">
                             <span class="icon icon-cog"></span> 設定
                         </a>
                         <a class="dropdown-item" href="{{ url('logout') }}"

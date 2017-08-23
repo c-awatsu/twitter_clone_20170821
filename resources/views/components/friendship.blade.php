@@ -31,7 +31,7 @@
                         </span>
 
                         <strong class="card-title d-block">
-                            <a class="text-inherit" href="#">{{ $profile -> display_name }}</a>
+                            <a class="text-inherit" href={{url("{$profile -> url_name}/profile")}}>{{ $profile -> display_name }}</a>
                         </strong>
 
                         <p class="mb-4">

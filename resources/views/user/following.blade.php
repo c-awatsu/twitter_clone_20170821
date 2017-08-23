@@ -19,6 +19,7 @@
     <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
 </head>
 <body class="application">
+
 @include('components.navbar')
 
 <div class="profile-header" style="background-image: url({{ asset('images/iceland.jpg') }})">
@@ -26,7 +27,7 @@
         <div class="container-inner">
             <img class="rounded-circle media-object" src="{{ asset('images/no-thumb.png') }}">
             <h3 class="profile-header-user">{{ $user -> display_name }}</h3>
-            <p class="profile-header-bio">{{ $user -> url_name }}</p>
+            <p class="profile-header-bio">{{ $user -> description }}</p>
         </div>
     </div>
 
@@ -41,13 +42,13 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     フォロー
-                    <strong class="d-block">{{ $user -> followers -> count() }}</strong>
+                    <strong class="d-block">{{ $user -> followers() -> count() }}</strong>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     フォロワー
-                    <strong class="d-block">{{ $user -> following -> count() }}</strong>
+                    <strong class="d-block">{{ $user -> following() -> count() }}</strong>
                 </a>
             </li>
         </ul>

@@ -25,12 +25,15 @@ Route::post('register', 'Auth\RegisterController@register');
 
 
 Route::get('home', 'HomeController@index')->name('home');
-Route::post('home','HomeController@tweet')->name('home');
+Route::post('home', 'HomeController@tweet')->name('home');
 
-Route::get('account', 'SampleController@account');
-Route::get('profile', 'SampleController@profile');
+Route::get('account', 'AccountController@account');
+Route::get('profile', 'AccountController@profile')->name('profile');
+Route::put('profile', 'AccountController@updateProfile')->name('profile');
+
 Route::get('search', 'SampleController@search');
 Route::get('user', 'SampleController@user');
 
-Route::get('following', 'FriendshipController@following');
-Route::get('followers', 'FriendshipController@followers');
+Route::get('{url_name}/following', 'FriendshipController@following');
+Route::get('{url_name}/followers', 'FriendshipController@followers');
+Route::get('{url_name}/profile', 'FriendshipController@profile');
