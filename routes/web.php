@@ -31,5 +31,6 @@ Route::get('account', 'SampleController@account');
 Route::get('profile', 'SampleController@profile');
 Route::get('search', 'SampleController@search');
 Route::get('user', 'SampleController@user');
-Route::get('following', 'SampleController@following');
-Route::get('followers', 'SampleController@followers');
+
+Route::get('following', 'FriendshipController@following');
+Route::get('followers', 'FriendshipController@followers');

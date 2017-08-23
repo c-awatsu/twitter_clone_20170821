@@ -38,23 +38,4 @@ class SampleController extends Controller
         return view('user.index');
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function following()
-    {
-        $user = Auth::user();
-
-        return view('user.following',compact('user'));
-    }
-
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function followers()
-    {
-        $user = Auth::user();
-
-        return view('user.followers',compact('user'));
-    }
 }
