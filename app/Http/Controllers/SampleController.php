@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 class SampleController extends Controller
 {
     /**
@@ -41,7 +43,9 @@ class SampleController extends Controller
      */
     public function following()
     {
-        return view('user.following');
+        $user = Auth::user();
+
+        return view('user.following',compact('user'));
     }
 
     /**
@@ -49,6 +53,8 @@ class SampleController extends Controller
      */
     public function followers()
     {
-        return view('user.followers');
+        $user = Auth::user();
+
+        return view('user.followers',compact('user'));
     }
 }

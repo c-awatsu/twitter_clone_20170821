@@ -63,11 +63,12 @@ class User extends Authenticatable
         return $this-> hasMany('App\Tweet');
     }
 
-    public function follower(){
-        return $this -> hasMany('App\Friendship','follower_id');
+    public function followers(){
+        return $this -> belongsToMany(User::class,'friendships','followee_id','follower_id');
     }
 
-    public function followee(){
-        return $this -> hasMany('App\Friendship','followee_id');
+    public function following(){
+        return $this -> belongsToMany(User::class,'friendships','follower_id','followee_id');
+
     }
 }

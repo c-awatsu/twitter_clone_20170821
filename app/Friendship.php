@@ -2,9 +2,9 @@
 namespace App;
 
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class Friendship extends Model
+class Friendship extends Pivot
 {
     /**
      * 複数代入を行う属性
@@ -17,6 +17,5 @@ class Friendship extends Model
       'followee_id',
       'created_at',
     ];
-
 
 }

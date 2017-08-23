@@ -111,15 +111,15 @@
 
                     <ul class="card-profile-stats">
                         <li class="card-profile-stat">
-                            <a href="#" class="text-inherit">
+                            <a href={{ url('/following') }} class="text-inherit">
                                 <span class="text-muted">フォロー</span>
-                                <strong class="d-block">{{ count($user -> follower) }}</strong>
+                                <strong class="d-block">{{ $user -> followers -> count() }}</strong>
                             </a>
                         </li>
                         <li class="card-profile-stat">
-                            <a href="#" class="text-inherit">
+                            <a href={{url('/followers') }} class="text-inherit">
                                 <span class="text-muted">フォロワー</span>
-                                <strong class="d-block">{{ count($user -> followee) }}</strong>
+                                <strong class="d-block">{{ $user ->  following -> count() }}</strong>
                             </a>
                         </li>
                     </ul>
@@ -149,7 +149,7 @@
                 </li>
 
                 <li class="media list-group-item p-4">
-                    @foreach($sortedTweet as $tweet)
+                    @foreach($sortedTweets as $tweet)
                     <article class="d-flex w-100">
                         <a class="font-weight-bold text-inherit d-block" href="#">
                             <img class="media-object d-flex align-self-start mr-3"
