@@ -48,16 +48,38 @@
                         <li class="card-profile-stat">
                             <a href={{ url("{$user -> url_name}/following") }} class="text-inherit">
                                 <span class="text-muted">フォロー</span>
-                                <strong class="d-block">{{ $user -> followers -> count() }}</strong>
+                                <strong class="d-block">{{ $user -> following -> count() }}</strong>
                             </a>
                         </li>
                         <li class="card-profile-stat">
                             <a href={{url("{$user -> url_name}/followers") }} class="text-inherit">
                                 <span class="text-muted">フォロワー</span>
-                                <strong class="d-block">{{ $user ->  following -> count() }}</strong>
+                                <strong class="d-block">{{ $user ->  followers -> count() }}</strong>
                             </a>
                         </li>
                     </ul>
+                    <span class="align-content-center">
+                        @if(!$authUser->is($user))
+                            @if($authUser->isFollowing($user))
+                                <form action="{{ url("{$user->url_name}/unFollow") }}" method="POST">
+                                {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm following"
+                                            style="width: 6rem; height: 2.4rem;">
+                                    <span>フォロー中</span>
+                                    <span>解除</span>
+                                </button>
+                            </form>
+                            @else
+                                <form action="{{ url("{$user->url_name}/follow") }}" method="POST">
+                            {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-outline-primary btn-sm"
+                                            style="width: 6.5rem; height: 2.4rem;">フォローする</button>
+                            </form>
+                            @endif
+                        @endif
+                    </span>
+
                 </div>
             </div>
         </div>

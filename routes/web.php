@@ -32,9 +32,15 @@ Route::put('account','AccountController@updateAccount')->name('account');
 Route::get('profile', 'AccountController@profile')->name('profile');
 Route::put('profile', 'AccountController@updateProfile')->name('profile');
 
-Route::get('search', 'SampleController@search');
+Route::post('search', 'SearchController@search');
+
 Route::get('user', 'SampleController@user');
 
 Route::get('{url_name}/following', 'FriendshipController@following');
+
 Route::get('{url_name}/followers', 'FriendshipController@followers');
+
 Route::get('{url_name}/profile', 'FriendshipController@profile');
+
+Route::post('{url_name}/follow', 'FriendshipController@followUser');
+Route::delete('{url_name}/unFollow', 'FriendshipController@unFollowUser');

@@ -46,15 +46,15 @@
 
                     <ul class="card-profile-stats">
                         <li class="card-profile-stat">
-                            <a href={{ url("{$user -> url_name}/following") }} class="text-inherit">
+                            <a href={{ url("{$user->url_name}/following") }} class="text-inherit">
                                 <span class="text-muted">フォロー</span>
-                                <strong class="d-block">{{ $user -> followers -> count() }}</strong>
+                                <strong class="d-block">{{ $user -> following -> count() }}</strong>
                             </a>
                         </li>
                         <li class="card-profile-stat">
-                            <a href={{url('/followers') }} class="text-inherit">
+                            <a href={{url("{$user->url_name}/followers") }} class="text-inherit">
                                 <span class="text-muted">フォロワー</span>
-                                <strong class="d-block">{{ $user ->  following -> count() }}</strong>
+                                <strong class="d-block">{{ $user ->  followers -> count() }}</strong>
                             </a>
                         </li>
                     </ul>

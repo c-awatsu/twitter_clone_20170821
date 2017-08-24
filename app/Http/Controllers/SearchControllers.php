@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-class SampleController extends Controller
+
+class SearchControllers extends Controller
 {
-     /**
+    /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function user()
+    public function search()
     {
-        return view('user.index');
+        return view('search');
     }
-
 }

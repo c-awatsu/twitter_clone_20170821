@@ -23,7 +23,7 @@ class FriendshipController extends Controller
         $authUser = Auth::user();
         $profiles = $user->following;
 
-        return view('user.following', compact('authUser','user', 'profiles'));
+        return view('user.following', compact('authUser', 'user', 'profiles'));
     }
 
     /**
@@ -35,20 +35,32 @@ class FriendshipController extends Controller
         $authUser = Auth::user();
         $profiles = $user->followers;
 
-        return view('user.followers', compact('authUser','user', 'profiles'));
+        return view('user.followers', compact('authUser', 'user', 'profiles'));
     }
 
-    public function profile($urlName){
+    public function profile($urlName)
+    {
         $user = User::whereUrlName($urlName)->first();
         $authUser = Auth::user();
-        $sortedTweets = $user -> tweets -> sortByDesc('created_at');
+        $sortedTweets = $user->tweets->sortByDesc('created_at');
 
-        return view('user.profile',compact('authUser','user','sortedTweets'));
+        return view('user.profile', compact('authUser', 'user', 'sortedTweets'));
     }
 
-    public function followerUser($authUser,$followerUser)
+    public function followUser($followedUserUrlName)
     {
+        $followedUser = User::whereUrlName($followedUserUrlName)->first();
+        Auth::user()->following()->attach($followedUser->id);
 
+        return redirect()->back();
+    }
+
+    public function unFollowUser($unFollowedUserUrlName)
+    {
+        $unFollowedUser = User::whereUrlName($unFollowedUserUrlName)->first();
+        Auth::user()->following()->detach($unFollowedUser->id);
+
+        return redirect()->back();
     }
 
 

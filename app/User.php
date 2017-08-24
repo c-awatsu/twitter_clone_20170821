@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * App\User
@@ -77,12 +78,19 @@ class User extends Authenticatable
 
     public function followers()
     {
-        return $this->belongsToMany(User::class, 'friendships', 'followee_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'friendships', 'followee_id', 'follower_id')
+            ->withTimestamps();
     }
 
     public function following()
     {
-        return $this->belongsToMany(User::class, 'friendships', 'follower_id', 'followee_id');
+        return $this->belongsToMany(User::class, 'friendships', 'follower_id', 'followee_id')
+            ->withTimestamps();
     }
+
+    public function isFollowing($user){
+        return Auth::user() -> following() -> find($user->id);
+    }
+
 
 }

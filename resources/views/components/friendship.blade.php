@@ -13,22 +13,24 @@
                         </a>
 
                         <span class="float-right">
-                            @if($authUser->followers->find($profile))
-                                <form action="#" method="POST">
+                            @if(!$authUser->is($profile))
+                                @if($authUser->isFollowing($profile))
+                                    <form action="{{ url("{$profile->url_name}/unFollow") }}" method="POST">
                                 {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-outline-danger btn-sm following"
-                                            style="width: 6rem; height: 2.4rem;">
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-outline-danger btn-sm following"
+                                                style="width: 6rem; height: 2.4rem;">
                                     <span>フォロー中</span>
                                     <span>解除</span>
                                 </button>
                             </form>
-                            @else
-                                <form action="#" method="POST">
+                                @else
+                                    <form action="{{ url("{$profile->url_name}/follow") }}" method="POST">
                             {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-outline-primary btn-sm"
-                                            style="width: 6.5rem; height: 2.4rem;">フォローする</button>
+                                        <button type="submit" class="btn btn-outline-primary btn-sm"
+                                                style="width: 6.5rem; height: 2.4rem;">フォローする</button>
                             </form>
+                                @endif
                             @endif
                         </span>
 

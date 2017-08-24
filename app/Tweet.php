@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ca
- * Date: 2017/08/22
- * Time: 16:17
- */
 
 namespace App;
 
@@ -20,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
  * @property string $body
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\User $tweetUser
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Tweet authUserTweets()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Tweet followingTweets()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Tweet homeTimelineTweets()
