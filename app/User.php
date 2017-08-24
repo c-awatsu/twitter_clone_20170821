@@ -18,7 +18,10 @@ use Illuminate\Notifications\Notifiable;
  * @property string|null $remember_token
  * @property \Carbon\Carbon|null $created_at
  * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $followers
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\User[] $following
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Tweet[] $tweets
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereAvatar($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\User whereDescription($value)
@@ -80,7 +83,6 @@ class User extends Authenticatable
     public function following()
     {
         return $this->belongsToMany(User::class, 'friendships', 'follower_id', 'followee_id');
-
     }
 
 }

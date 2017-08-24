@@ -22,9 +22,8 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        //$now = new Carbon(Carbon::now(new DateTimeZone('Asia/Tokyo')));
-        //$subtractTime = $now -> sub(date_interval_create_from_date_string($user->created_at));
-        $sortedTweets = $user -> tweets -> sortByDesc('created_at');
+        $sortedTweets = Tweet::homeTimelineTweets()->get();
+
         return view('home', compact( 'user','sortedTweets'));
     }
 

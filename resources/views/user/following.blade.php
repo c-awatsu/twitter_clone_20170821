@@ -34,19 +34,19 @@
     <nav class="profile-header-nav" id="profile-header">
         <ul class="nav nav-tabs justify-content-center">
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url("{$user->url_name}/profile") }}" class="nav-link">
                     ツイート
                     <strong class="d-block">{{ $user -> tweets -> count() }}</strong>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url("{$user->url_name}/following") }}" class="nav-link">
                     フォロー
                     <strong class="d-block">{{ $user -> followers() -> count() }}</strong>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ url("{$user->url_name}/followers") }}" class="nav-link">
                     フォロワー
                     <strong class="d-block">{{ $user -> following() -> count() }}</strong>
                 </a>

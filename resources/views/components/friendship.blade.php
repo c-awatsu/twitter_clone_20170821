@@ -13,25 +13,28 @@
                         </a>
 
                         <span class="float-right">
-                            <form action="#" method="POST">
+                            @if($authUser->followers->find($profile))
+                                <form action="#" method="POST">
                                 {{ csrf_field() }}
-
-                                <button type="submit" class="btn btn-outline-danger btn-sm following"
-                                        style="width: 6rem; height: 2.4rem;">
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-outline-danger btn-sm following"
+                                            style="width: 6rem; height: 2.4rem;">
                                     <span>フォロー中</span>
                                     <span>解除</span>
                                 </button>
                             </form>
-
-                            {{--<form action="#" method="POST">--}}
-                            {{--{{ csrf_field() }}--}}
-
-                            {{--<button type="submit" class="btn btn-outline-primary btn-sm">フォローする</button>--}}
-                            {{--</form>--}}
+                            @else
+                                <form action="#" method="POST">
+                            {{ csrf_field() }}
+                                    <button type="submit" class="btn btn-outline-primary btn-sm"
+                                            style="width: 6.5rem; height: 2.4rem;">フォローする</button>
+                            </form>
+                            @endif
                         </span>
 
                         <strong class="card-title d-block">
-                            <a class="text-inherit" href={{url("{$profile -> url_name}/profile")}}>{{ $profile -> display_name }}</a>
+                            <a class="text-inherit"
+                               href={{ url("{$profile -> url_name}/profile") }}>{{ $profile -> display_name }}</a>
                         </strong>
 
                         <p class="mb-4">

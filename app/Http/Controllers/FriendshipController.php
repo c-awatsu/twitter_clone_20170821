@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class FriendshipController extends Controller
 {
@@ -19,9 +20,10 @@ class FriendshipController extends Controller
     public function following($urlName)
     {
         $user = User::whereUrlName($urlName)->first();
+        $authUser = Auth::user();
         $profiles = $user->following;
 
-        return view('user.following', compact('user', 'profiles'));
+        return view('user.following', compact('authUser','user', 'profiles'));
     }
 
     /**
@@ -30,16 +32,24 @@ class FriendshipController extends Controller
     public function followers($urlName)
     {
         $user = User::whereUrlName($urlName)->first();
+        $authUser = Auth::user();
         $profiles = $user->followers;
 
-        return view('user.followers', compact('user', 'profiles'));
+        return view('user.followers', compact('authUser','user', 'profiles'));
     }
 
     public function profile($urlName){
         $user = User::whereUrlName($urlName)->first();
+        $authUser = Auth::user();
         $sortedTweets = $user -> tweets -> sortByDesc('created_at');
 
-        return view('user.profile',compact('user','sortedTweets'));
+        return view('user.profile',compact('authUser','user','sortedTweets'));
     }
+
+    public function followerUser($authUser,$followerUser)
+    {
+
+    }
+
 
 }

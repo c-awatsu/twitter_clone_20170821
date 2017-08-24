@@ -85,26 +85,26 @@
 
                 <li class="media list-group-item p-4">
                     @foreach($sortedTweets as $tweet)
-                    <article class="d-flex w-100">
-                        <a class="font-weight-bold text-inherit d-block" href="#">
-                            <img class="media-object d-flex align-self-start mr-3"
-                                 src="{{ asset('images/no-thumb.png') }}">
-                        </a>
-                        <div class="media-body">
-                            <div class="mb-2">
-                                <a class="text-inherit" href="#">
-                                    <strong>{{$user -> display_name}}</strong>
-                                    <span class="text-muted">&#64;{{$user -> url_name }}</span>
-                                </a>
-                                -
-                                <time class="small text-muted">{{ $tweet -> created_at }}</time>
-                            </div>
+                        <article class="d-flex w-100">
+                            <a class="font-weight-bold text-inherit d-block" href="#">
+                                <img class="media-object d-flex align-self-start mr-3"
+                                     src="{{ asset('images/no-thumb.png') }}">
+                            </a>
+                            <div class="media-body">
+                                <div class="mb-2">
+                                    <a class="text-inherit" href="#">
+                                        <strong>{{ $tweet->tweetUser->display_name }}</strong>
+                                        <span class="text-muted">&#64;{{ $tweet->tweetUser->url_name }}</span>
+                                    </a>
+                                    -
+                                    <time class="small text-muted">{{ $tweet -> created_at }}</time>
+                                </div>
 
-                            <p>
-                                {{ $tweet -> body }}
-                            </p>
-                        </div>
-                    </article>
+                                <p>
+                                    {{ $tweet -> body }}
+                                </p>
+                            </div>
+                        </article>
                     @endforeach
                 </li>
             </ul>
