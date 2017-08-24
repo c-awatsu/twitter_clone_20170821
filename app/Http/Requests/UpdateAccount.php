@@ -23,13 +23,16 @@ class UpdateAccount extends FormRequest
      */
     public function rules()
     {
-        return [
-             'password' => 'confirmed'
+        return ['password' => 'confirmed',
+            'email' => 'email',
         ];
     }
 
     public function messages()
     {
-         return ['password.confirmed' => 'パスワードとパスワード(確認)が一致していません'];
+        return ['password.confirmed' => 'パスワードとパスワード(確認)が一致していません',
+            'password.min' => 'パスワードは8文字以上で入力してください',
+            'email.email' => 'メールアドレスを正しい書式で入力してください',
+        ];
     }
 }
