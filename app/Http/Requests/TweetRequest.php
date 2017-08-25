@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfile extends FormRequest
+class TweetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,13 @@ class UpdateProfile extends FormRequest
      */
     public function rules()
     {
-        return ['display_name' => ['required', 'string', 'alpha_num',],];
+        return ['body' => ['required','string','max:140',]];
     }
 
     public function messages()
     {
-        return ['display_name.required' => '表示名を空にすることはできません',];
+        return ['body.required' => '空のツイートを行うことはできません',
+                'body.string' => '文字列を使用してください',
+               'body.max' => 'ツイートは140字以内で行ってください'];
     }
 }

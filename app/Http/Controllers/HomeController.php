@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Tweet;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\TweetRequest;
 
 class HomeController extends Controller
 {
@@ -27,13 +27,13 @@ class HomeController extends Controller
         return view('home', compact( 'user','sortedTweets'));
     }
 
-    public function tweet(Request $request)
+    public function tweet(TweetRequest $request)
     {
-        $this->validate($request, ['body' => 'max:140']);
+        $input = $request->only('body');
 
         Tweet::create([
             'user_id' => Auth::user() -> id,
-            'body' => $request->input('body'),
+            'body' => $input,
         ]);
 
         return redirect('home');

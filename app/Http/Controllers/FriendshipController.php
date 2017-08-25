@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Tweet;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -42,7 +43,7 @@ class FriendshipController extends Controller
     {
         $user = User::whereUrlName($urlName)->first();
         $authUser = Auth::user();
-        $sortedTweets = $user->tweets->sortByDesc('created_at');
+        $sortedTweets = Tweet::userTweets($urlName)->get()->all();
 
         return view('user.profile', compact('authUser', 'user', 'sortedTweets'));
     }

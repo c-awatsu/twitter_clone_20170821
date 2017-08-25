@@ -24,97 +24,12 @@
 
 <div class="container pt-4">
     <div class="row">
-
         <div class="col-lg-3">
-            <div class="card card-profile mb-4">
-                <div class="card-header bg-danger"></div>
-                <div class="card-block text-center">
-                    <a href="#">
-                        <img class="avatar card-profile-img" src="{{ asset('images/no-thumb.png') }}">
-                    </a>
-
-                    <div class="card-title my-2">
-                        <a href="#" class="font-weight-bold text-inherit d-block">
-                            {{$user -> display_name }}
-                        </a>
-                        <a href="#" class="text-inherit text-muted">
-                            &#64;{{$user ->url_name }}
-                        </a>
-                    </div>
-
-                    <p class="mb-4">{{$user -> description }}</p>
-
-                    <ul class="card-profile-stats">
-                        <li class="card-profile-stat">
-                            <a href={{ url("{$user -> url_name}/following") }} class="text-inherit">
-                                <span class="text-muted">フォロー</span>
-                                <strong class="d-block">{{ $user -> following -> count() }}</strong>
-                            </a>
-                        </li>
-                        <li class="card-profile-stat">
-                            <a href={{url("{$user -> url_name}/followers") }} class="text-inherit">
-                                <span class="text-muted">フォロワー</span>
-                                <strong class="d-block">{{ $user ->  followers -> count() }}</strong>
-                            </a>
-                        </li>
-                    </ul>
-                    <span class="align-content-center">
-                        @if(!$authUser->is($user))
-                            @if($authUser->isFollowing($user))
-                                <form action="{{ url("{$user->url_name}/unFollow") }}" method="POST">
-                                {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-outline-danger btn-sm following"
-                                            style="width: 6rem; height: 2.4rem;">
-                                    <span>フォロー中</span>
-                                    <span>解除</span>
-                                </button>
-                            </form>
-                            @else
-                                <form action="{{ url("{$user->url_name}/follow") }}" method="POST">
-                            {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-outline-primary btn-sm"
-                                            style="width: 6.5rem; height: 2.4rem;">フォローする</button>
-                            </form>
-                            @endif
-                        @endif
-                    </span>
-
-                </div>
-            </div>
+            @include('components.userInfo')
         </div>
 
         <div class="col-lg-6">
-            <ul class="list-group media-list-stream mb-4">
-                <li class="media list-group-item p-4">
-                    @if(count($sortedTweets) > 0)
-                        @foreach($sortedTweets as $tweet)
-                            <article class="d-flex w-100">
-                                <a class="font-weight-bold text-inherit d-block" href="#">
-                                    <img class="media-object d-flex align-self-start mr-3"
-                                         src="{{ asset('images/no-thumb.png') }}">
-                                </a>
-                                <div class="media-body">
-                                    <div class="mb-2">
-                                        <a class="text-inherit" href="#">
-                                            <strong>{{$user -> display_name}}</strong>
-                                            <span class="text-muted">&#64;{{$user -> url_name }}</span>
-                                        </a>
-                                        -
-                                        <time class="small text-muted">{{ $tweet -> created_at }}</time>
-                                    </div>
-
-                                    <p>
-                                        {{ $tweet -> body }}
-                                    </p>
-                                </div>
-                            </article>
-                        @endforeach
-                    @else
-                        <strong>ツイートはまだありません</strong>
-                    @endif
-                </li>
-            </ul>
+            @include('components.tweet')
         </div>
 
         <div class="col-lg-3">
@@ -125,7 +40,6 @@
 
     </div>
 </div>
-
 
 <!-- jQuery first, then Tether, then Bootstrap JS. -->
 <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"

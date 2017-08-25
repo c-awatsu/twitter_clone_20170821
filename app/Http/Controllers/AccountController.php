@@ -9,9 +9,8 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Requests\UpdateAccount;
-use App\Http\Requests\UpdateProfile;
-use Illuminate\Http\Request;
+use App\Http\Requests\UpdateAccountRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -32,24 +31,22 @@ class AccountController extends Controller
     public function profile()
     {
         $user = Auth::user();
+
         return view('settings.profile', compact('user'));
     }
 
-    public function updateProfile(UpdateProfile $request)
+    public function updateProfile(UpdateProfileRequest $request)
     {
         $input = $request -> only('display_name', 'description');
-
         Auth::user()->update($input);
 
         return view('settings.profile', ['user' => Auth::user()]);
     }
 
-    public function updateAccount(UpdateAccount $request)
+    public function updateAccount(UpdateAccountRequest $request)
     {
         $input = $request->only('url_name', 'email', 'password');
-
         Auth::user()->update($input);
-
 
         return view('settings.account', ['user' => Auth::user()]);
     }
