@@ -29,11 +29,10 @@ class HomeController extends Controller
 
     public function tweet(TweetRequest $request)
     {
-        $input = $request->only('body');
 
         Tweet::create([
             'user_id' => Auth::user() -> id,
-            'body' => $input,
+            'body' => $request->input('body'),
         ]);
 
         return redirect('home');
