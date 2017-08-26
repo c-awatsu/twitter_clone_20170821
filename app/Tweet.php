@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
 /**
- * App\TweetRequest
+ * App\Tweet
  *
  * @property int $id
  * @property int $user_id
