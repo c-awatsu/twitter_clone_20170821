@@ -38,13 +38,13 @@ Route::post('home', 'HomeController@tweet')->name('home');
  * アカウント情報編集画面
  */
 Route::get('account', 'AccountController@index')->name('account.index');
-Route::put('account','AccountController@update')->name('account.update');
+Route::put('account','AccountController@update');
 
 /**
  * プロフィール情報編集画面
  */
 Route::get('profile', 'ProfileController@index')->name('profile.index');
-Route::put('profile', 'ProfileController@update')->name('profile.update');
+Route::put('profile', 'ProfileController@update');
 
 /**
  * 検索結果画面
