@@ -35,12 +35,16 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::post('home', 'HomeController@tweet')->name('home');
 
 /**
- * 登録情報編集画面
+ * アカウント情報編集画面
  */
-Route::get('account', 'AccountController@account')->name('account');
-Route::put('account','AccountController@updateAccount')->name('account');
-Route::get('profile', 'AccountController@profile')->name('profile');
-Route::put('profile', 'AccountController@updateProfile')->name('profile');
+Route::get('account', 'AccountController@index')->name('account.index');
+Route::put('account','AccountController@update');
+
+/**
+ * プロフィール情報編集画面
+ */
+Route::get('profile', 'ProfileController@index')->name('profile.index');
+Route::put('profile', 'ProfileController@update');
 
 /**
  * 検索結果画面
