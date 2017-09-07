@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Tweet;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\TweetRequest;
 
@@ -37,5 +38,13 @@ class HomeController extends Controller
 
         return redirect('home');
 
+    }
+
+    public function search(Request $request)
+    {
+        $searchWord = $request->input('search');
+        $searchedTweets = Tweet::searchTweets($searchWord)->get()->all();
+
+        return view('search', compact('searchWord', 'searchedTweets'));
     }
 }

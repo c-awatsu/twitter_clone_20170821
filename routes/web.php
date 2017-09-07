@@ -19,37 +19,33 @@ Route::get('/', function () {
  * 認証画面
  */
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-Route::post('login', 'Auth\LoginController@login');
+Route::post('login', 'Auth\LoginController@login')->name('login');
 Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 /**
  * 新規登録画面
  */
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
+Route::post('register', 'Auth\RegisterController@register')->name('register');
 
 /**
  * ホーム画面
  */
 Route::get('home', 'HomeController@index')->name('home');
 Route::post('home', 'HomeController@tweet')->name('home');
+Route::post('home/search', 'HomeController@search')->name('home.search');
 
 /**
  * アカウント情報編集画面
  */
 Route::get('account', 'AccountController@index')->name('account.index');
-Route::put('account','AccountController@update');
+Route::put('account','AccountController@update')->name('account.update');
 
 /**
  * プロフィール情報編集画面
  */
 Route::get('profile', 'ProfileController@index')->name('profile.index');
 Route::put('profile', 'ProfileController@update');
-
-/**
- * 検索結果画面
- */
-Route::post('search', 'SearchController@search');
 
 /**
  * フォロワー・フォロウィー一覧表示画面
