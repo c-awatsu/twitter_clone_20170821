@@ -25,14 +25,14 @@ class HomeController extends Controller
         $user = Auth::user();
         $sortedTweets = Tweet::homeTimelineTweets()->get();
 
-        return view('home', compact( 'user','sortedTweets'));
+        return view('home', compact('user', 'sortedTweets'));
     }
 
     public function tweet(TweetRequest $request)
     {
 
         Tweet::create([
-            'user_id' => Auth::user() -> id,
+            'user_id' => Auth::user()->id,
             'body' => $request->input('body'),
         ]);
 
