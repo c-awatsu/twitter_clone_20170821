@@ -42,9 +42,9 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
-        $searchWord = $request->input('search');
-        $searchedTweets = Tweet::searchTweets($searchWord)->get()->all();
+        $word= $request->input('search');
+        $tweets = Tweet::searchTweets($word)->get()->all();
 
-        return view('search', compact('searchWord', 'searchedTweets'));
+        return view('search', compact('', 'tweets'));
     }
 }
