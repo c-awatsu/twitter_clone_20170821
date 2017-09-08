@@ -24,20 +24,24 @@
 
 <div class="container pt-4">
     <div class="row">
-        <div class="col-lg-3">
-            @include('components.userInfo')
-        </div>
-
-        <div class="col-lg-6">
-            @include('components.tweet')
-        </div>
-
-        <div class="col-lg-3">
-            <div class="card card-link-list mb-4">
-                <div class="card-block">&copy; AsiaQuest Co., Ltd</div>
+        @if(is_null($user))
+            <div style="text-align: center" class="col-lg-9 card card-link-list mb-4">
+                <div class="card-block"><strong>存在しないユーザーです</strong></div>
             </div>
-        </div>
+        @else
+            <div class="col-lg-3">
+                @include('components.userInfo')
+            </div>
 
+            <div class="col-lg-6">
+                @include('components.tweet')
+            </div>
+        @endif
+            <div class="col-lg-3">
+                <div class="card card-link-list mb-4">
+                    <div class="card-block">&copy; AsiaQuest Co., Ltd</div>
+                </div>
+            </div>
     </div>
 </div>
 

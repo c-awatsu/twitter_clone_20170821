@@ -43,8 +43,9 @@ class FriendshipController extends Controller
     {
         $user = User::whereUrlName($urlName)->first();
         $authUser = Auth::user();
-        $sortedTweets = Tweet::userTweets($urlName)->get()->all();
-
+        if (!is_null($user)) {
+            $sortedTweets = Tweet::userTweets($urlName)->get()->all();
+        }
         return view('user.profile', compact('authUser', 'user', 'sortedTweets'));
     }
 

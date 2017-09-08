@@ -92,5 +92,4 @@ class User extends Authenticatable
         return Auth::user() -> following() -> find($user->id);
     }
 
-
 }
